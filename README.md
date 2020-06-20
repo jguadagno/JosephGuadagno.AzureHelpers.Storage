@@ -1,2 +1,3 @@
-# JosephGuadagno.AzureHelpers.Cosmos
-A collection of classes that aid in developing applications around Azure Table Storage
+# JosephGuadagno.AzureHelpers.Storage
+
+A collection of classes to aid in development with Azure Storage Queues and Blobs
