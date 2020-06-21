@@ -8,28 +8,46 @@ using Azure.Storage.Blobs.Models;
 
 namespace JosephGuadagno.AzureHelpers.Storage
 {
-    // TODO: Update XML Documentation
-
+    /// <summary>
+    /// Provides methods to interact with Containers in an Azure storage
+    /// </summary>
     public class Containers
     {
+        /// <summary>
+        /// The reference to the Blob Service Client
+        /// </summary>
         public BlobServiceClient BlobServiceClient { get; }
 
+        /// <summary>
+        /// Creates an instance of a Container
+        /// </summary>
+        /// <param name="storageConnectionString">The connection string to use</param>
+        /// <exception cref="ArgumentNullException">Can be thrown if either the <see cref="storageConnectionString"/> is null or empty</exception>
         public Containers(string storageConnectionString)
         {
             if (string.IsNullOrEmpty(storageConnectionString))
             {
-                throw new  ArgumentNullException(nameof(storageConnectionString), "The storage connection string cannot be null or empty");
+                throw new ArgumentNullException(nameof(storageConnectionString),
+                    "The storage connection string cannot be null or empty");
             }
+
             BlobServiceClient = new BlobServiceClient(storageConnectionString);
         }
 
+        /// <summary>
+        /// Creates a container
+        /// </summary>
+        /// <param name="containerName">The name of the container</param>
+        /// <returns>A BlobContainer info upon success</returns>
+        /// <exception cref="ArgumentNullException">Throws if the <see cref="containerName"/> is null or empty</exception>
+        /// <remarks>See https://docs.microsoft.com/en-us/dotnet/api/azure.storage.blobs.models.blobcontainerinfo?view=azure-dotnet for more info on the BlobContainerInfo object</remarks>
         public async Task<BlobContainerClient> CreateContainerAsync(string containerName)
         {
             if (string.IsNullOrEmpty(containerName))
             {
                 throw new ArgumentNullException(nameof(containerName), "The container name cannot be null or empty");
             }
-            
+
             //TODO: Add the ability to enable soft delete
             // if (retainForNumberOfDays > 0)
             // {
@@ -39,7 +57,7 @@ namespace JosephGuadagno.AzureHelpers.Storage
             //     };
             //     BlobServiceClient.SetProperties(serviceProperties);
             // }
-            
+
             try
             {
                 var apiResponse = await BlobServiceClient.CreateBlobContainerAsync(containerName);
@@ -52,26 +70,40 @@ namespace JosephGuadagno.AzureHelpers.Storage
             }
         }
 
+        /// <summary>
+        /// Deletes the container
+        /// </summary>
+        /// <param name="containerName">The name of the container</param>
+        /// <returns>True, if successful, otherwise, false</returns>
+        /// <exception cref="ArgumentNullException">Throws if the <see cref="containerName"/> is null or empty</exception>
         public async Task<bool> DeleteContainerAsync(string containerName)
         {
             if (string.IsNullOrEmpty(containerName))
             {
                 throw new ArgumentNullException(nameof(containerName), "The container name cannot be null or empty");
             }
-            
+
             try
             {
                 var apiResponse = await BlobServiceClient.DeleteBlobContainerAsync(containerName);
-                return (apiResponse.Status == (int)HttpStatusCode.NoContent || apiResponse.Status== (int)HttpStatusCode.Accepted);
+                return (apiResponse.Status == (int) HttpStatusCode.NoContent ||
+                        apiResponse.Status == (int) HttpStatusCode.Accepted);
             }
             catch (RequestFailedException ex)
-                when (ex.ErrorCode == BlobErrorCode.ContainerBeingDeleted || ex.ErrorCode == BlobErrorCode.ContainerNotFound)
+                when (ex.ErrorCode == BlobErrorCode.ContainerBeingDeleted ||
+                      ex.ErrorCode == BlobErrorCode.ContainerNotFound)
             {
                 // Ignore any errors if the blob is being deleted or not found
                 return true;
             }
         }
 
+        /// <summary>
+        /// Returns a reference to the container
+        /// </summary>
+        /// <param name="containerName">The container name</param>
+        /// <returns>A reference to the container, if successful</returns>
+        /// <exception cref="ArgumentNullException">Throws if the <see cref="containerName"/> is null or empty</exception>
         public BlobContainerClient GetContainer(string containerName)
         {
             if (string.IsNullOrEmpty(containerName))
@@ -82,12 +114,17 @@ namespace JosephGuadagno.AzureHelpers.Storage
             return BlobServiceClient.GetBlobContainerClient(containerName);
         }
 
+        /// <summary>
+        /// Returns a list of all of the containers in the current storage account
+        /// </summary>
+        /// <returns>A List of BlobContainerItems</returns>
+        /// <remarks>See https://docs.microsoft.com/en-us/dotnet/api/azure.storage.blobs.models.blobcontaineritem?view=azure-dotnet for more info on the BlobContainerItem object</remarks>
         public async Task<List<BlobContainerItem>> GetContainersAsync()
         {
             var apiResponse = BlobServiceClient.GetBlobContainersAsync();
             var enumerator = apiResponse.GetAsyncEnumerator();
             var blobContainerItems = new List<BlobContainerItem>();
-            
+
             try
             {
                 while (await enumerator.MoveNextAsync())
