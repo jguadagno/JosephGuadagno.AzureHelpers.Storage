@@ -7,6 +7,11 @@
         <Product>JosephGuadagno Azure Helpers - Storage</Product>
         <Description>A collection of classes to aid in development with Azure Storage Queues and Blobs</Description>
         <Copyright>Copyright ©2014-2020, Joseph Guadagno, JosephGuadagno.Net, LLC; josephguadagno.net</Copyright>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageTags>Azure Blobs Storage Queue BlobClient QueueClient StorageAccount</PackageTags>
+        <RepositoryUrl>https://github.com/jguadagno/JosephGuadagno.AzureHelpers.Storage</RepositoryUrl>
+        <Title>JosephGuadagno Azure Helpers - Storage</Title>
+        <PackageProjectUrl>https://github.com/jguadagno/JosephGuadagno.AzureHelpers.Storage</PackageProjectUrl>
     </PropertyGroup>
     
     <PropertyGroup>
