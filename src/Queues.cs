@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Azure;
 using Azure.Storage.Queues;
 using Azure.Storage.Queues.Models;
+using JosephGuadagno.AzureHelpers.Storage.Interfaces;
 
 namespace JosephGuadagno.AzureHelpers.Storage
 {
@@ -12,7 +13,7 @@ namespace JosephGuadagno.AzureHelpers.Storage
     /// Provides methods for interactive with a Queue in Azure Storage Queues
     /// </summary>
     /// <remarks>Use the <see cref="GetQueueClient"/> to create create an instance of the <see cref="Queue"/> class</remarks>
-    public class Queues
+    public class Queues : IQueues
     {
         /// <summary>
         /// Provides a reference to the QueueServiceClient for Azure

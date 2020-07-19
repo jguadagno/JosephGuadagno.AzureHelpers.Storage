@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JosephGuadagno.AzureHelpers.Storage", "src\JosephGuadagno.AzureHelpers.Storage.csproj", "{E11F37E3-052F-4B65-B8B1-156EAF99E8CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JosephGuadagno.AzureHelpers.Storage.Tests", "tests\JosephGuadagno.AzureHelpers.Storage.Tests.csproj", "{BCCA69CC-21F4-484E-A39A-67120B31D527}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E11F37E3-052F-4B65-B8B1-156EAF99E8CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E11F37E3-052F-4B65-B8B1-156EAF99E8CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E11F37E3-052F-4B65-B8B1-156EAF99E8CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E11F37E3-052F-4B65-B8B1-156EAF99E8CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCCA69CC-21F4-484E-A39A-67120B31D527}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCCA69CC-21F4-484E-A39A-67120B31D527}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCCA69CC-21F4-484E-A39A-67120B31D527}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCCA69CC-21F4-484E-A39A-67120B31D527}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

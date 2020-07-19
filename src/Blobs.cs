@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 using Azure;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using JosephGuadagno.AzureHelpers.Storage.Interfaces;
 
 namespace JosephGuadagno.AzureHelpers.Storage
 {
     /// <summary>
     /// Provides methods to interact with Blobs in an Azure storage <see cref="Containers"/>
     /// </summary>
-    public class Blobs
+    public class Blobs : IBlobs
     {
         /// <summary>
         /// A reference to the current Blob Container being used

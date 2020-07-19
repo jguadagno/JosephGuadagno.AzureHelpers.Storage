@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using Azure.Storage.Queues;
 using Azure.Storage.Queues.Models;
+using JosephGuadagno.AzureHelpers.Storage.Interfaces;
 
 namespace JosephGuadagno.AzureHelpers.Storage
 {
     /// <summary>
     /// Provides methods to interact with Azure Storage queues
     /// </summary>
-    public class Queue
+    public class Queue : IQueue
     {
         /// <summary>
         /// This property is a reference to the QueueClient being used
