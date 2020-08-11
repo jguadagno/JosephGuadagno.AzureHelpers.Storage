@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using Azure;
+using Azure.Identity;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using JosephGuadagno.AzureHelpers.Storage.Interfaces;
@@ -56,6 +57,31 @@ namespace JosephGuadagno.AzureHelpers.Storage
             }
 
             BlobContainerClient = blobContainerClient;
+        }
+        
+        
+        // TODO: Add Unit Test around this
+        // TODO: Update code documentation
+        
+        public Blobs(string accountName, Azure.Core.TokenCredential tokenCredential, string containerName, BlobClientOptions blobClientOptions = null)
+        {
+            if (string.IsNullOrEmpty(accountName))
+            {
+                throw new ArgumentNullException(nameof(accountName), "The Azure Storage Account name cannot be null or empty");
+            }
+
+            if (string.IsNullOrEmpty(containerName))
+            {
+                throw new ArgumentNullException(nameof(containerName), "The container name cannot be null or empty");
+            }
+            
+            if (tokenCredential == null)
+            {
+                tokenCredential = new DefaultAzureCredential();
+            }
+
+            var containerEndpoint = $"https://{accountName}.blob.core.windows.net/{containerName}";
+            BlobContainerClient = new BlobContainerClient(new Uri(containerName), tokenCredential, blobClientOptions);
         }
 
         // TODO: Implement the methods in the future
