@@ -79,9 +79,9 @@ namespace JosephGuadagno.AzureHelpers.Storage
             {
                 tokenCredential = new DefaultAzureCredential();
             }
-
+            
             var containerEndpoint = $"https://{accountName}.blob.core.windows.net/{containerName}";
-            BlobContainerClient = new BlobContainerClient(new Uri(containerName), tokenCredential, blobClientOptions);
+            BlobContainerClient = new BlobContainerClient(new Uri(containerEndpoint), tokenCredential, blobClientOptions);
         }
 
         // TODO: Implement the methods in the future

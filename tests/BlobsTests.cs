@@ -62,6 +62,23 @@ namespace JosephGuadagno.AzureHelpers.Storage.Tests
         }
         
         // Constructor2
+        // Failed Test AccountName = Null
+        // Failed Test containerName = Null
+        // Test with valid credentials
+
+        [Fact]
+        public void Constructor2_WithValidArguments_ShouldSetValidBlobContainerClient()
+        {
+            // Arrange
+
+
+            // Act
+
+
+            // Assert
+
+        }
+        
         //    blobContainerClient
         [Fact]
         public void Constructor2_WithNullBlobContainerClient_ShouldThrowArgumentNullException()

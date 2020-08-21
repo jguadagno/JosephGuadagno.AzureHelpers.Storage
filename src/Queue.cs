@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using System.Text.Json;
+using Azure.Identity;
 using Azure.Storage.Queues;
 using Azure.Storage.Queues.Models;
 using JosephGuadagno.AzureHelpers.Storage.Interfaces;
@@ -43,6 +44,29 @@ namespace JosephGuadagno.AzureHelpers.Storage
             QueueClient = new QueueClient(storageConnectionString, queueName);
         }
 
+        // TODO: Add Unit Test around this.
+        // TODO: Update code documentation
+        public Queue(string accountName, Azure.Core.TokenCredential tokenCredential, string queueName)
+        {
+            if (string.IsNullOrEmpty(accountName))
+            {
+                throw new ArgumentNullException(nameof(accountName), "The Azure Storage Account name cannot be null or empty");
+            }
+            
+            if (string.IsNullOrEmpty(queueName))
+            {
+                throw new ArgumentNullException(nameof(queueName), "The queue name can not be null or empty.");
+            }
+
+            if (tokenCredential == null)
+            {
+                tokenCredential = new DefaultAzureCredential();
+            }
+
+            var accountEndpoint = $"https://{accountName}.queue.core.windows.net/{queueName}";
+            QueueClient = new QueueClient(new Uri(accountEndpoint), tokenCredential);
+        }
+        
         /// <summary>
         /// Creates an instance of the Queue
         /// </summary>
