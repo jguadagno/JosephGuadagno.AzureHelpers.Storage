@@ -17,7 +17,7 @@
     <PropertyGroup>
         <VersionMajor>1</VersionMajor>
         <VersionMinor>1</VersionMinor>
-        <VersionBuild>0</VersionBuild>
+        <VersionBuild>1</VersionBuild>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -27,9 +27,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Azure.Identity" Version="1.1.1" />
-      <PackageReference Include="Azure.Storage.Blobs" Version="12.4.4" />
-      <PackageReference Include="Azure.Storage.Queues" Version="12.3.2" />
+      <PackageReference Include="Azure.Identity" Version="1.2.2" />
+      <PackageReference Include="Azure.Storage.Blobs" Version="12.6.0" />
+      <PackageReference Include="Azure.Storage.Queues" Version="12.4.2" />
       <PackageReference Include="NETStandard.Library" Version="2.0.3" />
       <PackageReference Include="System.Text.Json" Version="4.7.2" />
     </ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Azure.Storage.Queues;
 using Azure.Storage.Queues.Models;
@@ -168,6 +169,35 @@ namespace JosephGuadagno.AzureHelpers.Storage.Tests
 			// See if the message is actually there
 			var messages = QueueTestHelper.PeekMessages(queueName);
 			Assert.NotNull(messages.First(m => m.MessageId == sendReceipt.MessageId));
+
+			// Cleanup
+			QueueTestHelper.DeleteQueue(temporaryQueue);
+		}
+		
+		[Fact]
+		public async Task AddMessageAsync_WithMessage_ShouldPostMessageAndReceivedSameMessage()
+		{
+			// Arrange
+			var queueName = QueueTestHelper.GetTemporaryQueueName();
+			var temporaryQueue = QueueTestHelper.CreateQueue(queueName);
+			var queue = new Queue(QueueTestHelper.DevelopmentConnectionString, queueName);
+			var testMessage = TestObject.GetSampleObject();
+			
+			// Act
+			var sendReceipt = await queue.AddMessageAsync(testMessage);
+
+			// Assert
+			Assert.NotNull(sendReceipt);
+			Assert.True(sendReceipt.ExpirationTime >= DateTimeOffset.Now);
+			// See if the message is actually there
+			var messages = QueueTestHelper.PeekMessages(queueName);
+			var message = messages.First(m => m.MessageId == sendReceipt.MessageId);
+			Assert.NotNull(message);
+			// Compare the contents of the TestMessage to the Message
+			var retrievedMessage = JsonSerializer.Deserialize<TestObject>(message.MessageText);
+			Assert.NotNull(retrievedMessage);
+			Assert.Equal(testMessage.StringProperty, retrievedMessage.StringProperty);
+			Assert.Equal(testMessage.RandomNumber, retrievedMessage.RandomNumber);
 
 			// Cleanup
 			QueueTestHelper.DeleteQueue(temporaryQueue);
