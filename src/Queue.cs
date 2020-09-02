@@ -108,8 +108,30 @@ namespace JosephGuadagno.AzureHelpers.Storage
             {
                 throw new ArgumentNullException(nameof(message), "The message cannot be null.");
             }
-
+            
             return await QueueClient.SendMessageAsync(JsonSerializer.Serialize(message));
+        }
+        
+        // TODO: Add test cases
+        /// <summary>
+        /// Adds a message to the queue with Base64 Encoding
+        /// </summary>
+        /// <param name="message">The message to ass</param>
+        /// <typeparam name="T">A serializable type</typeparam>
+        /// <returns>A receipt of the message upon success</returns>
+        /// <exception cref="ArgumentNullException">Throws if the <see cref="message"/> is null</exception>
+        /// <remarks>This is required for deserializing queue messages as objects with Azure Functions.</remarks>
+        public async Task<SendReceipt> AddMessageWithBase64EncodingAsync<T>(T message)
+        {
+            if (message == null)
+            {
+                throw new ArgumentNullException(nameof(message), "The message cannot be null.");
+            }
+
+            var jsonText = JsonSerializer.Serialize(message);
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(jsonText);
+            var base64Encoded = Convert.ToBase64String(plainTextBytes);
+            return await QueueClient.SendMessageAsync(base64Encoded);
         }
 
         /// <summary>
