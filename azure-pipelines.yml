@@ -18,7 +18,7 @@ variables:
 - name: buildConfiguration
   value: ${{ parameters.buildConfig }}
 - group: CodeSigning
-- group: my-variable-group
+- group: Personal-Key-Vault
 
 steps:
 - task: UseDotNet@2
