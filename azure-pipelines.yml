@@ -74,7 +74,11 @@ steps:
       --azure-key-vault-client-id "$(azure-key-vault-client-id)" `
       --azure-key-vault-client-secret "$(azure-key-vault-client-secret)" `
       --azure-key-vault-certificate "JosephGuadagno-2021"
-      
+
+- task: DownloadPipelineArtifact@2
+  inputs:
+    buildType: 'current'
+    targetPath: '$(Pipeline.Workspace)'
 - task: NuGetCommand@2
   displayName: Publishing package(s) to NuGet
   inputs:
