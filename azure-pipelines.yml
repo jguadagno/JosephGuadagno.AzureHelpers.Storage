@@ -18,6 +18,7 @@ variables:
 - name: buildConfiguration
   value: ${{ parameters.buildConfig }}
 - group: CodeSigning
+- group: Personal-Key-Vault
 
 steps:
 - task: UseDotNet@2
@@ -65,10 +66,10 @@ steps:
       --file-digest "sha256" `
       --timestamp-rfc3161 "http://timestamp.digicert.com" `
       --timestamp-digest "sha256" `
-      --azure-key-vault-url "$(azure-key-vault-url)git pull" `
+      --azure-key-vault-url "$(azure-key-vault-url)" `
+      --azure-key-vault-tenant-id "$(azure-key-vault-tenant-id)" `
       --azure-key-vault-client-id "$(azure-key-vault-client-id)" `
       --azure-key-vault-client-secret "$(azure-key-vault-client-secret)" `
-      --azure-key-vault-tenant-id "$(azure-key-vault-tenant-id)" `
       --azure-key-vault-certificate "JosephGuadagno-2021"
 
 - task: NuGetCommand@2
