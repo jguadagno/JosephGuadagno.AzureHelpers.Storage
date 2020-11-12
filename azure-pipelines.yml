@@ -17,6 +17,8 @@ pool:
 variables:
 - name: buildConfiguration
   value: ${{ parameters.buildConfig }}
+- name: System.Debug
+  value: true
 - group: CodeSigning
 - group: Personal-Key-Vault
 
