@@ -21,14 +21,6 @@ variables:
 - group: Personal-Key-Vault
 
 steps:
-
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: |
-      # Write your commands here
-      
-      echo $(Build.Repository.LocalPath)
   
 - task: UseDotNet@2
   displayName: Setup .NET SDK Version 5.x
@@ -85,6 +77,5 @@ steps:
   displayName: Publishing package(s) to NuGet
   inputs:
     command: 'push'
-    packagesToPush: './src/*.nupkg'
     nuGetFeedType: 'external'
     publishFeedCredentials: 'Public-NuGet'
