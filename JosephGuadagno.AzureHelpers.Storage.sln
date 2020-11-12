@@ -4,8 +4,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JosephGuadagno.AzureHelpers
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JosephGuadagno.AzureHelpers.Storage.Tests", "tests\JosephGuadagno.AzureHelpers.Storage.Tests.csproj", "{BCCA69CC-21F4-484E-A39A-67120B31D527}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JosephGuadagno.AzureHelpers.Storage.ConsoleApp", "JosephGuadagno.AzureHelpers.Storage.ConsoleApp\JosephGuadagno.AzureHelpers.Storage.ConsoleApp.csproj", "{939A00C3-4E62-448C-BE4D-6AA2001327C5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,9 +18,5 @@ Global
 		{BCCA69CC-21F4-484E-A39A-67120B31D527}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCCA69CC-21F4-484E-A39A-67120B31D527}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCCA69CC-21F4-484E-A39A-67120B31D527}.Release|Any CPU.Build.0 = Release|Any CPU
-		{939A00C3-4E62-448C-BE4D-6AA2001327C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{939A00C3-4E62-448C-BE4D-6AA2001327C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{939A00C3-4E62-448C-BE4D-6AA2001327C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{939A00C3-4E62-448C-BE4D-6AA2001327C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
