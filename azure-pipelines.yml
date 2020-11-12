@@ -65,7 +65,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      .\NuGetKeyVaultSignTool sign ./src/*.nupkg `
+      .\NuGetKeyVaultSignTool sign ./src/*.nupkg -o ./src/signed/*.nupkg `
       --file-digest "sha256" `
       --timestamp-rfc3161 "http://timestamp.digicert.com" `
       --timestamp-digest "sha256" `
@@ -75,17 +75,10 @@ steps:
       --azure-key-vault-client-secret "$(azure-key-vault-client-secret)" `
       --azure-key-vault-certificate "JosephGuadagno-2021"
 
-- task: AzureFileCopy@4
-  inputs:
-    SourcePath: './src/*.nupkg'
-    azureSubscription: 'Visual Studio Ultimate - MSDN (MVP) (4f42033c-3579-4a94-8023-a3561518ae7f)'
-    Destination: 'AzureBlob'
-    storage: 'jguadagnobackup'
-    ContainerName: 'Builds'
-    
 - task: NuGetCommand@2
   displayName: Publishing package(s) to NuGet
   inputs:
     command: 'push'
+    packagesToPush: ./src/signed/*.nupkg
     nuGetFeedType: 'external'
     publishFeedCredentials: 'Public-NuGet'
