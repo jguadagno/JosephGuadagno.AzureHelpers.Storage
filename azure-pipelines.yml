@@ -17,8 +17,6 @@ pool:
 variables:
 - name: buildConfiguration
   value: ${{ parameters.buildConfig }}
-- name: System.Debug
-  value: true
 - group: CodeSigning
 - group: Personal-Key-Vault
 
@@ -64,7 +62,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      .\NuGetKeyVaultSignTool sign ./src/**/*.nupkg `
+      .\NuGetKeyVaultSignTool sign ./src/*.nupkg `
       --file-digest "sha256" `
       --timestamp-rfc3161 "http://timestamp.digicert.com" `
       --timestamp-digest "sha256" `
@@ -78,6 +76,6 @@ steps:
   displayName: Publishing package(s) to NuGet
   inputs:
     command: 'push'
-    packagesToPush: './src/**/*.nupkg'
+    packagesToPush: './src/*.nupkg'
     nuGetFeedType: 'external'
     publishFeedCredentials: 'Public-NuGet'
