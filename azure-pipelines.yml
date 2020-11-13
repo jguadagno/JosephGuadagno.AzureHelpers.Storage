@@ -20,7 +20,7 @@ variables:
 - group: CodeSigning
 - group: Personal-Key-Vault
 - name: System.Debug
-  value: tr
+  value: true
 
 steps:
 
