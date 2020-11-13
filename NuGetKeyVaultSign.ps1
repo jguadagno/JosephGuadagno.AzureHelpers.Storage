@@ -9,7 +9,7 @@ param (
 )
 
 Write-Host ("##[group]Sign Tool")
-$files = Get-ChildItem -Path $FilePath
+$files = Get-ChildItem -Path $FilePath -Recurse
 
 foreach ($file in $files) {
     
