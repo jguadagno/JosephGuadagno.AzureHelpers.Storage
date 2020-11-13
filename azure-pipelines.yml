@@ -35,9 +35,7 @@ steps:
   displayName: 'Build the Assembly'
   inputs:
     command: 'build'
-    projects: |
-      **/*.csproj
-      **/*.Tests.csproj
+    projects: '**/*.csproj'
     arguments: '--configuration $(BuildConfiguration)'
 
 ## Skipping the Unit Tests because they require the Azure Storage Emulator
@@ -51,7 +49,7 @@ steps:
   displayName: Package up the Assembly
   inputs:
     command: 'pack'
-    packagesToPack: '**/*.csproj;!**/*.Tests.csproj'
+    packagesToPack: './src/*.csproj'
     nobuild: true
     versioningScheme: 'off'
     verbosityPack: 'Normal'
@@ -63,12 +61,11 @@ steps:
     custom: 'tool'
     arguments: 'install --tool-path . NuGetKeyVaultSignTool'
 
-
 - task: PowerShell@2
   displayName: Running NuGetKeyVaultSign
   inputs:
     filePath: './NuGetKeyVaultSign.ps1'
-    arguments: '-file ./src/*.nupkg -AzureKeyVaultUrl $Env:AzureKeyVaultUrl -AzureKeyVaultTenantId $Env:AzureKeyVaultTenantId -AzureKeyVaultClientId $Env:AzureKeyVaultClientId -AzureKeyVaultClientSecret $Env:AzureKeyVaultClientSecret -AzureKeyVaultCertificate "JosephGuadagno-2021"'
+    arguments: '-file ./src/*.nupkg -AzureKeyVaultUrl $Env:azure-key-vault-url -AzureKeyVaultTenantId $Env:azure-key-vault-tenant-id -AzureKeyVaultClientId $Env:azure-key-vault-client-id -AzureKeyVaultClientSecret $Env:azure-key-vault-client-secret -AzureKeyVaultCertificate "JosephGuadagno-2021"'
     pwsh: true
 
 - task: NuGetCommand@2
