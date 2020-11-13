@@ -74,6 +74,6 @@ steps:
   displayName: Publishing package(s) to NuGet
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/output'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/output/*.nupkg'
     nuGetFeedType: 'external'
     publishFeedCredentials: 'Public-NuGet'
