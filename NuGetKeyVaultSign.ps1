@@ -8,10 +8,12 @@ param (
     [string]$AzureKeyVaultCertificate = "JosephGuadagno-2021"
 )
 
+Write-Host ("##[group]Sign Tool")
 $files = Get-ChildItem -Path $FilePath
 
 foreach ($file in $files) {
-    Write-Debug("Signing file: " + $file.FullName)
+    
+    Write-Host("##[debug]Signing file: " + $file.FullName)
 
     .\NuGetKeyVaultSignTool sign $file `
     --file-digest "sha256" `
@@ -23,3 +25,4 @@ foreach ($file in $files) {
     --azure-key-vault-client-secret $AzureKeyVaultClientSecret `
     --azure-key-vault-certificate $AzureKeyVaultCertificate
 }
+Write-Host ("##[endgroup]")
