@@ -19,8 +19,8 @@ variables:
   value: ${{ parameters.buildConfig }}
 - group: CodeSigning
 - group: Personal-Key-Vault
-- name: System.Debug
-  value: true
+#- name: System.Debug
+#  value: true
 
 steps:
 
