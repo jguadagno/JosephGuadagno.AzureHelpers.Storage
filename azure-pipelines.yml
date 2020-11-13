@@ -35,7 +35,9 @@ steps:
   displayName: 'Build the Assembly'
   inputs:
     command: 'build'
-    projects: '**/*.csproj'
+    projects: |
+      **/*.csproj
+      **/*.Tests.csproj
     arguments: '--configuration $(BuildConfiguration)'
 
 ## Skipping the Unit Tests because they require the Azure Storage Emulator
@@ -49,8 +51,9 @@ steps:
   displayName: Package up the Assembly
   inputs:
     command: 'pack'
-    packagesToPack: './src/*.csproj'
+    packagesToPack: '**/*.csproj;!**/*.Tests.csproj'
     nobuild: true
+    versioningScheme: 'off'
     verbosityPack: 'Normal'
 
 - task: DotNetCoreCLI@2
@@ -65,7 +68,7 @@ steps:
   displayName: Running NuGetKeyVaultSign
   inputs:
     filePath: './NuGetKeyVaultSign.ps1'
-    arguments: '-file ./src/*.nupkg -AzureKeyVaultUrl $Env:AzureKeyVaultUrl -AzureKeyVaultTenantId $Env:AzureKeyVaultTenantId -AzureKeyVaultClientId $Env:AzureKeyVaultClientId -AzureKeyVaultClientSecret AzureKeyVaultClientSecret -AzureKeyVaultCertificate "JosephGuadagno-2021"'
+    arguments: '-file ./src/*.nupkg -AzureKeyVaultUrl $Env:AzureKeyVaultUrl -AzureKeyVaultTenantId $Env:AzureKeyVaultTenantId -AzureKeyVaultClientId $Env:AzureKeyVaultClientId -AzureKeyVaultClientSecret $Env:AzureKeyVaultClientSecret -AzureKeyVaultCertificate "JosephGuadagno-2021"'
     pwsh: true
 
 - task: NuGetCommand@2
