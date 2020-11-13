@@ -65,7 +65,7 @@ steps:
   displayName: Running NuGetKeyVaultSign
   inputs:
     filePath: './NuGetKeyVaultSign.ps1'
-    arguments: '-file ./src/*.nupkg -AzureKeyVaultUrl $Env:azure-key-vault-url -AzureKeyVaultTenantId $Env:azure-key-vault-tenant-id -AzureKeyVaultClientId $Env:azure-key-vault-client-id -AzureKeyVaultClientSecret $Env:azure-key-vault-client-secret -AzureKeyVaultCertificate "JosephGuadagno-2021"'
+    arguments: '-file ./src/*.nupkg -AzureKeyVaultUrl $(azure-key-vault-url) -AzureKeyVaultTenantId $(azure-key-vault-tenant-id) -AzureKeyVaultClientId $(azure-key-vault-client-id) -AzureKeyVaultClientSecret $(azure-key-vault-client-secret) -AzureKeyVaultCertificate "JosephGuadagno-2021"'
     pwsh: true
 
 - task: NuGetCommand@2
