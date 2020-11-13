@@ -64,7 +64,7 @@ steps:
 - task: PowerShell@2
   displayName: Running NuGetKeyVaultSign
   inputs:
-    filePath: './src/NuGetKeyVaultSign.ps1'
+    filePath: './NuGetKeyVaultSign.ps1'
     arguments: '-file ./src/*.nupkg'
     pwsh: true
 
