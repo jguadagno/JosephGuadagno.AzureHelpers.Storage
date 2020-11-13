@@ -24,11 +24,6 @@ variables:
 
 steps:
 
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: 'Get-ChildItem -Path Env:\'
-
 - task: UseDotNet@2
   displayName: Setup .NET SDK Version 5.x
   inputs:
@@ -65,26 +60,27 @@ steps:
     custom: 'tool'
     arguments: 'install --tool-path . NuGetKeyVaultSignTool'
 
+
 - task: PowerShell@2
   displayName: Running NuGetKeyVaultSign
   inputs:
     targetType: 'inline'
     script: |
-      .\NuGetKeyVaultSignTool sign ./src/*.nupkg -o ./src/signed/*.nupkg `
-      --file-digest "sha256" `
-      --timestamp-rfc3161 "http://timestamp.digicert.com" `
-      --timestamp-digest "sha256" `
-      --azure-key-vault-url "$(azure-key-vault-url)" `
-      --azure-key-vault-tenant-id "$(azure-key-vault-tenant-id)" `
-      --azure-key-vault-client-id "$(azure-key-vault-client-id)" `
-      --azure-key-vault-client-secret "$(azure-key-vault-client-secret)" `
-      --azure-key-vault-certificate "JosephGuadagno-2021"
+      .\NuGetKeyVaultSignTool sign ./src/*.nupkg `
+      --file-digest sha256 `
+      --timestamp-rfc3161 http://timestamp.digicert.com `
+      --timestamp-digest sha256 `
+      --azure-key-vault-url $(azure-key-vault-url) `
+      --azure-key-vault-tenant-id $(azure-key-vault-tenant-id) `
+      --azure-key-vault-client-id $(azure-key-vault-client-id) `
+      --azure-key-vault-client-secret $(azure-key-vault-client-secret) `
+      --azure-key-vault-certificate JosephGuadagno-2021
     pwsh: true
 
 - task: NuGetCommand@2
   displayName: Publishing package(s) to NuGet
   inputs:
     command: 'push'
-    packagesToPush: ./src/signed/*.nupkg
+    packagesToPush: ./src/*.nupkg
     nuGetFeedType: 'external'
     publishFeedCredentials: 'Public-NuGet'
