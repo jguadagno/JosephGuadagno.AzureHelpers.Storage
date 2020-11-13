@@ -51,6 +51,7 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: './src/*.csproj'
+    packDirectory: '$(Build.ArtifactStagingDirectory)/output'
     nobuild: true
     versioningScheme: 'off'
     verbosityPack: 'Normal'
@@ -66,13 +67,13 @@ steps:
   displayName: Running NuGetKeyVaultSign
   inputs:
     filePath: './NuGetKeyVaultSign.ps1'
-    arguments: '-FilePath ./*.nupkg -AzureKeyVaultUrl $(azure-key-vault-url) -AzureKeyVaultTenantId $(azure-key-vault-tenant-id) -AzureKeyVaultClientId $(azure-key-vault-client-id) -AzureKeyVaultClientSecret $(azure-key-vault-client-secret) -AzureKeyVaultCertificate "JosephGuadagno-2021"'
+    arguments: '-FilePath "$(Build.ArtifactStagingDirectory)/output/*.nupkg" -AzureKeyVaultUrl $(azure-key-vault-url) -AzureKeyVaultTenantId $(azure-key-vault-tenant-id) -AzureKeyVaultClientId $(azure-key-vault-client-id) -AzureKeyVaultClientSecret $(azure-key-vault-client-secret) -AzureKeyVaultCertificate "JosephGuadagno-2021"'
     pwsh: true
 
 - task: NuGetCommand@2
   displayName: Publishing package(s) to NuGet
   inputs:
     command: 'push'
-    packagesToPush: ./*.nupkg
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/output'
     nuGetFeedType: 'external'
     publishFeedCredentials: 'Public-NuGet'
