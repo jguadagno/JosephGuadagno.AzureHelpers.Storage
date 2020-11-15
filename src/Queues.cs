@@ -25,7 +25,7 @@ namespace JosephGuadagno.AzureHelpers.Storage
         /// Creates an instance of the Queues class
         /// </summary>
         /// <param name="storageConnectionString">The connection string to use</param>
-        /// <exception cref="ArgumentNullException">Can be thrown if either the <see cref="storageConnectionString"/> is null or empty</exception>
+        /// <exception cref="ArgumentNullException">Can be thrown if the storageConnectionString is null or empty</exception>
         public Queues(string storageConnectionString)
         {
             if (string.IsNullOrEmpty(storageConnectionString))
@@ -38,7 +38,12 @@ namespace JosephGuadagno.AzureHelpers.Storage
         }
 
         // TODO: Add Unit Test around this.
-        // TODO: Update code documentation
+        /// <summary>
+        /// Creates an instance of the Queues class
+        /// </summary>
+        /// <param name="accountName">The Azure Storage account name that the Queue belongs to.</param>
+        /// <param name="tokenCredential">The connection string to use</param>
+        /// <exception cref="ArgumentNullException">Can be thrown if the accountName is null or empty</exception>
         public Queues(string accountName, Azure.Core.TokenCredential tokenCredential)
         {
             if (string.IsNullOrEmpty(accountName))

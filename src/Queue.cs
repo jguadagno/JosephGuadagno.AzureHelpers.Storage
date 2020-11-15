@@ -45,7 +45,13 @@ namespace JosephGuadagno.AzureHelpers.Storage
         }
 
         // TODO: Add Unit Test around this.
-        // TODO: Update code documentation
+        /// <summary>
+        /// Creates an instance of the Queue class
+        /// </summary>
+        /// <param name="accountName">The Azure Storage account name that the Queue belongs to.</param>
+        /// <param name="tokenCredential">The connection string to use</param>
+        /// <param name="queueName">The name of the queue</param>
+        /// <exception cref="ArgumentNullException">Can be thrown if the accountName or queueName is null or empty</exception>
         public Queue(string accountName, Azure.Core.TokenCredential tokenCredential, string queueName)
         {
             if (string.IsNullOrEmpty(accountName))

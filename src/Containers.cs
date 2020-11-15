@@ -37,7 +37,12 @@ namespace JosephGuadagno.AzureHelpers.Storage
         }
 
         // TODO: Add Unit Test around this.
-        // TODO: Update code documentation
+        /// <summary>
+        /// Creates an instance of a Container
+        /// </summary>
+        /// <param name="accountName">The Azure Storage account name that the container belongs to.</param>
+        /// <param name="tokenCredential">The connection string to use</param>
+        /// <exception cref="ArgumentNullException">Can be thrown if the accountName is null or empty</exception>
         public Containers(string accountName, Azure.Core.TokenCredential tokenCredential, BlobClientOptions blobClientOptions = null)
         {
             if (string.IsNullOrEmpty(accountName))
