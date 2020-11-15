@@ -34,10 +34,11 @@ namespace JosephGuadagno.AzureHelpers.Storage.Tests
 
         public static string GetTemporaryQueueName()
         {
-            var dateString = DateTime.Now.ToString("s")
+            var dateString = DateTime.Now.ToString("O")
                 .Replace("/", "-")
                 .Replace(":", "-")
-                .Replace("T", "-");
+                .Replace("T", "-")
+                .Replace(".", "-");
             var randomNumber = new Random().Next(1, 1000).ToString()
                 .PadLeft(4, '0');
             return $"test-{dateString}-{randomNumber}";
