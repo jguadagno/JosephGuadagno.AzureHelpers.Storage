@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net462;net47;net471;net472;net48;netstandard2.1;net5.0;net6.0</TargetFrameworks>
+        <TargetFrameworks>net462;net47;net471;net472;net48;net6.0;net7.0;netstandard2.1</TargetFrameworks>
         <Company>JosephGuadagno.NET, LLC</Company>
         <Authors>Joseph Guadagno</Authors>
         <Product>JosephGuadagno Azure Helpers - Storage</Product>
@@ -27,11 +27,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Azure.Identity" Version="1.5.0" />
-        <PackageReference Include="Azure.Storage.Blobs" Version="12.10.0" />
-        <PackageReference Include="Azure.Storage.Queues" Version="12.8.0" />
+      <PackageReference Include="Azure.Identity" Version="1.8.0" />
+        <PackageReference Include="Azure.Storage.Blobs" Version="12.14.1" />
+        <PackageReference Include="Azure.Storage.Queues" Version="12.12.0" />
         <PackageReference Include="NETStandard.Library" Version="2.0.3" />
-      <PackageReference Include="System.Text.Json" Version="6.0.1" />
+      <PackageReference Include="System.Text.Json" Version="7.0.1" />
     </ItemGroup>
 
 </Project>
