@@ -17,7 +17,7 @@
     <PropertyGroup>
         <VersionMajor>1</VersionMajor>
         <VersionMinor>1</VersionMinor>
-        <VersionBuild>5</VersionBuild>
+        <VersionBuild>6</VersionBuild>
     </PropertyGroup>
 
     <PropertyGroup>
