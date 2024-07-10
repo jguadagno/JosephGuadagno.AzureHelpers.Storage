@@ -4,6 +4,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JosephGuadagno.AzureHelpers
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JosephGuadagno.AzureHelpers.Storage.Tests", "tests\JosephGuadagno.AzureHelpers.Storage.Tests.csproj", "{BCCA69CC-21F4-484E-A39A-67120B31D527}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExtraStuff", "ExtraStuff", "{747AFB29-2093-47C2-9983-AB935ACE9AE0}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
+		NuGetKeyVaultSign.ps1 = NuGetKeyVaultSign.ps1
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
