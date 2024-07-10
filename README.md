@@ -2,11 +2,16 @@
 
 [![Build Status](https://jguadagno.visualstudio.com/JosephGuadagno.Utilities/_apis/build/status/jguadagno.JosephGuadagno.AzureHelpers.Storage?branchName=main)](https://jguadagno.visualstudio.com/JosephGuadagno.Utilities/_build/latest?definitionId=8&branchName=main) ![nuget](https://img.shields.io/nuget/dt/JosephGuadagno.AzureHelpers.Storage)
 
-A collection of classes to aid in development with Azure Storage [Queues](https://docs.microsoft.com/en-us/azure/storage/queues/?WT.mc_id=AZ-MVP-4024623) and [Blobs](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction?WT.mc_id=AZ-MVP-4024623). This package does not replace the need for the Azure Storage SDK but augment it be providing some wrappers around existing methods.
+A collection of classes to aid in development with Azure Storage [Queues](https://docs.microsoft.com/en-us/azure/storage/queues/?WT.mc_id=AZ-MVP-4024623) and [Blobs](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction?WT.mc_id=AZ-MVP-4024623). 
+This package does not replace the need for the Azure Storage SDK, 
+but augment it be providing some wrappers around existing methods.
 
-I tried to document the common use cased of the library.  If you want to see how to us an individual method, check out the [tests](/tests/).
+I tried to document the common use cased of the library. 
+If you want to see how to use an individual method, 
+check out the [tests](tests/JosephGuadagno.AzureHelpers.Storage.Tests.csproj).
 
-If you are in the need of using Azure Table Storage, check out [JosephGuadagno.AzureHelpers.Cosmos](https://www.github.com/jguadagno/JosephGuadagno.AzureHelpers.Cosmos).
+If you are in the need to use Azure Table Storage, 
+check out [JosephGuadagno.AzureHelpers.Cosmos](https://www.github.com/jguadagno/JosephGuadagno.AzureHelpers.Cosmos).
 
 ## Blob Storage
 
@@ -30,7 +35,7 @@ The Queue Storage helpers come in two classes, the Queues, and the Queue.
 
 ### Working with Queues
 
-[Queues](src/Queues.cs) contains methods around working with the queues in Azure Storage, creating, deleting, listing, etc.
+[Queues](src/Queues.cs) contain methods around working with the queues in Azure Storage, creating, deleting, listing, etc.
 
 [Documentation](docs/queues.md)
 
