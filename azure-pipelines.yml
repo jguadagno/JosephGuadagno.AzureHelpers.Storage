@@ -71,14 +71,6 @@ steps:
       pwsh: true
 
   - task: DotNetCoreCLI@2
-    displayName: Publishing package(s) to NuGet
-    inputs:
-      command: 'push'
-      packagesToPush: '$(Build.ArtifactStagingDirectory)/output/*.nupkg'
-      nuGetFeedType: 'external'
-      publishFeedCredentials: 'Public-NuGet'
-
-  - task: DotNetCoreCLI@2
     displayName: 'Publishing package to NuGet'
     inputs:
       command: custom
