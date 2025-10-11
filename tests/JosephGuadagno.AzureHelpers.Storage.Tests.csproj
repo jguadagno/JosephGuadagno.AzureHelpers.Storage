@@ -7,7 +7,7 @@
         <Product>JosephGuadagno Azure Helpers - Storage- Test Suite</Product>
         <Description>Test Suite</Description>
         <Copyright>Copyright ©2014-2025, Joseph Guadagno, JosephGuadagno.Net, LLC; josephguadagno.net</Copyright>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net9.0</TargetFramework>
     </PropertyGroup>
 
     <PropertyGroup>

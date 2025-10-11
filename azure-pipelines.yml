@@ -25,10 +25,10 @@ variables:
 steps:
 
   - task: UseDotNet@2
-    displayName: Setup .NET SDK Version 8.x
+    displayName: Setup .NET SDK Version 9.x
     inputs:
       packageType: sdk
-      version: 8.x
+      version: 9.x
       includePreviewVersions: true
 
   - task: DotNetCoreCLI@2
@@ -77,3 +77,13 @@ steps:
       packagesToPush: '$(Build.ArtifactStagingDirectory)/output/*.nupkg'
       nuGetFeedType: 'external'
       publishFeedCredentials: 'Public-NuGet'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Publishing package to NuGet'
+    inputs:
+      command: custom
+      custom: nuget
+      arguments: >
+        push $(Build.ArtifactStagingDirectory)/output/*.nupkg
+        -s https://api.nuget.org/v3/index.json
+        -k $(nuget-api-key) 
